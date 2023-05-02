@@ -1,0 +1,21 @@
+{
+  "name": "forkit",
+  "version": "1.0.0",
+  "description": "recipe web app",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build index.html"
+  },
+  "author": "strahinja",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.3",
+    "parcel": "^2.0.0-rc.0"
+  },
+  "dependencies": {
+    "fractional": "^1.0.0",
+    "regenerator-runtime": "^0.13.11"
+  }
+}
