@@ -1,11 +1,13 @@
-import { API_URL } from "./config";
+import { API_URL, RESULTS_PER_PAGE } from "./config";
 import { getJSON } from "./helpers";
 
 export const state = {
     recipe: {},
     search:{
       query: '',
-      results: []
+      results: [],
+      page: 1,
+      resultsPerPage: RESULTS_PER_PAGE
     }
 }
 
@@ -52,4 +54,17 @@ export const loadSearchResults = async function(query){
   }catch(err){
     throw err;
   }
+}
+
+// implementing pagination
+export const getSearchResultsPage = (page = state.search.page) => {
+
+  state.search.page = page;
+
+  const start = (page-1) * state.search.resultsPerPage; // starting page, will start at 1 [zero in our case, programmers count from zero]
+  const end = page * state.search.resultsPerPage; // end page
+
+  // reach to state variable
+  // and pull search-results from there giving the starting and end-point of an array
+  return state.search.results.slice(start, end);
 }
