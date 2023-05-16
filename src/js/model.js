@@ -92,6 +92,8 @@ export const addBookmark = (recipe) => {
 
   // Mark current recipe as bookmark
   if(recipe.id === state.recipe.id) state.recipe.bookmarked = true;
+
+  persistBookmarks();
 }
 
 export const deleteBookmark = (id) => {
@@ -101,4 +103,18 @@ export const deleteBookmark = (id) => {
   
   // Mark current recipe as NOT bookmark
   if(id === state.recipe.id) state.recipe.bookmarked = true;
+
+  persistBookmarks();
 }
+
+const persistBookmarks = () => {
+  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+}
+
+const init = () => {
+  const storage = localStorage.getItem('bookmarks');
+
+  if(storage) state.bookmarks = JSON.parse(storage);
+}
+
+init();
